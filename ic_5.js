@@ -65,7 +65,7 @@ function orderSubtotal(cart){
 //Step 6:
 function customerAdjustmentRate(customerType){
     switch (customerType) {
-        case ("student"): 
+        case "student": 
             return 0.03;
         case "member":
             return 0.05;
