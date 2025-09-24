@@ -50,10 +50,12 @@ function findProductById(id){
 
 //Step 4:
 function lineItemTotal(cartItem){
-    findProductById(cartItem);
-    priceAfterCategoryDiscount(productInformation[2]);
-        
-
+    let product = findProductById(cartItem.productId);
+    if (!product || cartItem.qty <= 0) 
+        return 0;
+    
+    let discountedPrice = priceAfterCategoryDiscount(product);
+    return cartItem.qty * discountedPrice;
 };
 
 //Step 5:
