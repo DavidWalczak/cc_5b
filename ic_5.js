@@ -60,12 +60,21 @@ function lineItemTotal(cartItem){
 
 //Step 5:
 function orderSubtotal(cart){
-
+    return cart.reduce((sum, item) => sum + lineItemTotal(item), 0);
 };
 
 //Step 6:
 function customerAdjustmentRate(customerType){
-
+    switch (customerType) {
+        case ("student"): 
+            return 0.03;
+        case "member":
+            return 0.05;
+        case "VIP":
+            return 0.1;
+        default:
+            return 0;
+    }
 };
 
 //Step 7:
