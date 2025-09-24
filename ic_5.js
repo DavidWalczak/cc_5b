@@ -18,7 +18,7 @@ const cart = [
 // Try: "regular", "student", "member", or "vip"
 const customerType = "member";
 
-//Step 2:
+//Step 1:
 let categoryDiscount
 function getCategoryDiscount(category){
     
@@ -41,9 +41,15 @@ function getCategoryDiscount(category){
     }
 };
 
+//Step 2:
+function priceAfterCategoryDiscount(product){
+    getCategoryDiscount(product.category);
+    return productPriceAfterDiscount = product.price*(1-categoryDiscount);
+};
+
 //Step 3:
 function findProductById(id){
-
+    
 };
 
 //Step 4:
