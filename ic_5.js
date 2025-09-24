@@ -38,14 +38,12 @@ function getCategoryDiscount(category){
 
 //Step 2:
 function priceAfterCategoryDiscount(product){
-    let rate = getCategoryDiscount(product.category);
-    return productPriceAfterDiscount = product.price*(1-rate);
+    return product.price*(1-(getCategoryDiscount(product.category)));
 };
 
 //Step 3:
 function findProductById(id){
-  let product = products.find(p => p.id === id);
-  return product || null;
+  return (products.find(p => p.id === id)) || null;
 };
 
 //Step 4:
@@ -53,9 +51,7 @@ function lineItemTotal(cartItem){
     let product = findProductById(cartItem.productId);
     if (!product || cartItem.qty <= 0) 
         return 0;
-    
-    let discountedPrice = priceAfterCategoryDiscount(product);
-    return cartItem.qty * discountedPrice;
+    return cartItem.qty * priceAfterCategoryDiscount(product);
 };
 
 //Step 5:
@@ -79,12 +75,14 @@ function customerAdjustmentRate(customerType){
 
 //Step 7:
 function orderTotal(cart,customerType){
-
+    let subtotal = orderSubtotal(cart);
+    let rate = customerAdjustmentRate(customerType);
+    return subtotal*(1-rate);
 };
 
 //Step 8:
 function formatCurrenycy(amount){
-
+    return "$" + amount.toFixed(2);
 };
 
 //Step 9: 
