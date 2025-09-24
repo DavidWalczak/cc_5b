@@ -25,35 +25,34 @@ function getCategoryDiscount(category){
     switch (category) {
         case ("gear"): 
             return categoryDiscount = 0.1;
-            break;
         case "apparel":
             return categoryDiscount = 0.15;
-            break;
         case "snacks":
             return categoryDiscount = 0.08;
-            break;
         case "access":
             return categoryDiscount = 0.05;
-            break;
         default:
             return categoryDiscount = 0;
-            break;
     }
 };
 
 //Step 2:
 function priceAfterCategoryDiscount(product){
-    getCategoryDiscount(product.category);
-    return productPriceAfterDiscount = product.price*(1-categoryDiscount);
+    let rate = getCategoryDiscount(product.category);
+    return productPriceAfterDiscount = product.price*(1-rate);
 };
 
 //Step 3:
 function findProductById(id){
-    
+  let product = products.find(p => p.id === id);
+  return product || null;
 };
 
 //Step 4:
-function lineItemTotal(cartItems){
+function lineItemTotal(cartItem){
+    findProductById(cartItem);
+    priceAfterCategoryDiscount(productInformation[2]);
+        
 
 };
 
