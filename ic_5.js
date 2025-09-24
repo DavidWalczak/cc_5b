@@ -16,7 +16,7 @@ const cart = [
 ];
 
 // Try: "regular", "student", "member", or "vip"
-const customerType = "member";
+const customerType = "cip";
 
 //Step 1:
 let categoryDiscount
@@ -81,14 +81,37 @@ function orderTotal(cart,customerType){
 };
 
 //Step 8:
-function formatCurrenycy(amount){
+function formatCurrency(amount){
     return "$" + amount.toFixed(2);
 };
 
 //Step 9: 
 function printReceipt(cart, customerType){
+    console.log("Receipt: ")
+    for (let item of cart){
+        let product = findProductById(item.productId)
+        if(!product) continue;
+
+        let discountedUnitPrice = priceAfterCategoryDiscount(product);
+        let lineTotal = lineItemTotal(item);
+
+        console.log(`${product.name} (x${item.qty})`);
+        console.log(`Unit Price: ${formatCurrency(discountedUnitPrice)}`);
+        console.log(`Line Total: ${formatCurrency(lineTotal)}`);
+    }
+
+    let subtotal = orderSubtotal(cart);
+    let adjustmentRate = customerAdjustmentRate(customerType);
+    let total = orderTotal(cart, customerType);
+
+    console.log("")
+    console.log(`Subtotal: ${formatCurrency(subtotal)}`);
+    console.log(`CustomerAdjustment (${(adjustmentRate *100).toFixed(0)}%): -${formatCurrency(subtotal*adjustmentRate)})`);
+    console.log(`Final Total: ${formatCurrency(total)}`);
 
 };
+
+printReceipt(cart, customerType);
 
 
 
